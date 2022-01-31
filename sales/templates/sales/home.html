@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}
+home
+{% endblock title %}
+
+{% block content %}
+<hr>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary mt-3">Search</button>
+</form>
+<br>
+
+{% if sales_df %}
+    Sales df
+    {{ sales_df|safe }}
+    <br>
+    Positions df
+    {{ positions_df|safe }}
+    <br>
+    Merged df
+    {{ merged_df|safe }}
+{% else %}
+    <h3>no data</h3>
+{% endif %}
+
+
+{% endblock content %}

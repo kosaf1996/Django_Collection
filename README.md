@@ -1,4 +1,4 @@
-# Django_Collection
+# Django_Collection <---현재 작업 진행중--->
 1.uuid code 생성
 - UUID란 네트워크 상에서 고유성이 보장되는 id를 만들기 위한 표준 규약
 - sales/model.py

@@ -133,6 +133,7 @@ STATIC_URL = 'static/'
 #정적 파일이 위치한 경로들을 지정하는 설정 항목
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'sales' / 'static',
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

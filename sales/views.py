@@ -3,7 +3,8 @@ from django.views.generic import ListView, DetailView
 from .models import Sale
 from .forms import SalesSearchForm
 import pandas as pd
-from .utils import get_customer_from_id, get_salesman_from_id
+from .utils import get_customer_from_id, get_salesman_from_id, get_chart
+
 # Create your views here.
 
 def home_view(request):
@@ -11,6 +12,8 @@ def home_view(request):
     sales_df = None
     positions_df = None
     merged_df =None
+    df = None
+    chart = None
 
     if request.method == 'POST':
         date_from = request.POST.get('date_from')
@@ -47,10 +50,18 @@ def home_view(request):
             #두 데이터 프레임 병합
             merged_df = pd.merge(sales_df,positions_df, on='sales_id')
 
+            #Group By
+            df = merged_df.groupby('transaction_id', as_index=False)['price'].agg('sum')
+
+
+            #Chart
+            chart = get_chart(chart_type, df, labels=df['transaction_id'].values)
+
             # html 형식으로 변경
             sales_df = sales_df.to_html()
             positions_df = positions_df.to_html()
             merged_df = merged_df.to_html()
+            df = df.to_html()
 
         else:
             print('no data')
@@ -61,6 +72,8 @@ def home_view(request):
         'sales_df': sales_df,
         'positions_df': positions_df,
         'merged_df':merged_df,
+        'df':df,
+        'chart':chart,
     }
     return render(request, 'sales/home.html', context)
 

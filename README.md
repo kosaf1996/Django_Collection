@@ -52,6 +52,22 @@
 - sales/view.py
 - sales/templates/home.html
 
+9. matplotlib 활용 차트 만들기
+- sales/view.py
+- sales/templates/home.html
+- sales/utils.py
+
+10. seaborn 활용 차트 만들기
+- sales/view.py
+- sales/templates/home.html
+- sales/utils.py
+
+11. html <--> javascript
+- static/sales/home.js
+- sales/templates/sales/home.html
+- reports/settings.py
+
+
 ##
 정리
 Djnago Signal ★★★★★중요
